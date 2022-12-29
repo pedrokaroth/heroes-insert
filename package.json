@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1282.0",
+    "joi": "^17.7.0"
+  },
+  "name": "hero-insert",
+  "description": "<!-- title: 'AWS NodeJS Example' description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.' layout: Doc framework: v3 platform: AWS language: nodeJS priority: 1 authorLink: 'https://github.com/serverless' authorName: 'Serverless, inc.' authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4' -->",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "scripts": {
+    "insert-local": "sls invoke local -f insert --path mocks/heroes.insert.json",
+    "insert": "sls invoke -f insert --path mocks/heroes.insert.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
