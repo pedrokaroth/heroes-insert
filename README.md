@@ -12,9 +12,9 @@ authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
 
 
-# Serverless Framework AWS NodeJS Example
+# Receiving database events from an insert
 
-This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
+This repository shows an example of an application that executes a trigger when performing an insert in dynamodb.
 
 ## Usage
 
@@ -26,23 +26,12 @@ In order to deploy the example, you need to run the following command:
 $ serverless deploy
 ```
 
-After running deploy, you should see output similar to:
-
-```bash
-Deploying aws-node-project to stage dev (us-east-1)
-
-✔ Service deployed to stack aws-node-project-dev (112s)
-
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
-```
-
 ### Invocation
 
 After successful deployment, you can invoke the deployed function by using the following command:
 
 ```bash
-serverless invoke --function hello
+npm run insert
 ```
 
 Which should result in response similar to the following:
@@ -50,7 +39,14 @@ Which should result in response similar to the following:
 ```json
 {
     "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
+    "body": [
+        {
+            "created_at": "2022-12-29T01:12:33.656Z",
+            "id": "88dbe52d-0a60-4259-bd9f-32381fe07e81",
+            "name": "Batman",
+            "power": "Rich"
+        }
+    ]
 }
 ```
 
@@ -59,7 +55,7 @@ Which should result in response similar to the following:
 You can invoke your function locally by using the following command:
 
 ```bash
-serverless invoke local --function hello
+npm run insert-local
 ```
 
 Which should result in response similar to the following:
@@ -67,6 +63,13 @@ Which should result in response similar to the following:
 ```
 {
     "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
+    "body": [
+        {
+            "created_at": "2022-12-29T01:12:33.656Z",
+            "id": "88dbe52d-0a60-4259-bd9f-32381fe07e81",
+            "name": "Batman",
+            "power": "Rich"
+        }
+    ]
 }
 ```
